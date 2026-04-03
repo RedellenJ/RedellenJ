@@ -1,10 +1,15 @@
-# Ola 👋, eu sou Redellen Junior
+
+<div align="center">
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=22&pause=1000&color=2dc1ca&center=true&vCenter=true&random=false&width=524&lines=%E2%8A%B9+Ola+eu+sou+Redellen+Junior" alt="Typing SVG">
+  </a>
+</div>
 
 🧠 **Cursando Engenharia De Software**  
-🇧🇷 Brazil
+🇧🇷 Brasil
 
 ---
-## 🌐 Contatos:
+## 🌐 Contatos
 <a href="https://gyazo.com/cac906e60b338f597402af3eefec23de">
   <img src="https://img.shields.io/static/v1?message=Discord&logo=discord&label=&color=7289DA&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="discord logo"  />
 </a>  <br>
@@ -69,12 +74,13 @@
 <p align="center">
   <img height="170" src="https://streak-stats.demolab.com?user=RedellenJ&theme=tokyonight" />
 </p>
+
 ---
 
 ## 🚀 Filosofia
 
-> _""Programar não se resume a resolver problemas. <br>
-> Trata-se de construir soluções que sejam escaláveis, duradouras e que gerem valor real.""_
+> _"Programar não se resume a resolver problemas. <br>
+> Trata-se de construir soluções que sejam escaláveis, duradouras e que gerem valor real."_
 
 <picture align="center">
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/RedellenJ/RedellenJ/output/github-contribution-grid-snake-dark.svg">
