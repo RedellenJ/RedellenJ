@@ -38,7 +38,7 @@
   </a>       
 </p>
 
-## ⚙️ Ferrametas
+## ⚙️ Ferramentas
 
   <a href="https://github.com/RedellenJ">
     <img src="https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/vscode/vscode-original.svg" width="30" height="30"/>
