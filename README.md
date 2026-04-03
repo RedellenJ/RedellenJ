@@ -79,4 +79,6 @@
 > _""Programar não se resume a resolver problemas. <br>
 > Trata-se de construir soluções que sejam escaláveis, duradouras e que gerem valor real.""_
 
+![Snake animation](https://github.com/RedellenJ/RedellenJ/blob/output/github-contribution-grid-snake.svg)
+
 
