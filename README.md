@@ -79,12 +79,4 @@
 > _""Programar não se resume a resolver problemas. <br>
 > Trata-se de construir soluções que sejam escaláveis, duradouras e que gerem valor real.""_
 
-###
-
-<br clear="both">
-
-<img src="https://raw.githubusercontent.com/maurodesouza/maurodesouza/output/snake.svg" alt="Snake animation" />
-
-###
-
 
