@@ -4,18 +4,21 @@
 🇧🇷 Brazil
 
 ---
+## 🌐 Contatos:
+<a href="https://gyazo.com/cac906e60b338f597402af3eefec23de">
+  <img src="https://img.shields.io/static/v1?message=Discord&logo=discord&label=&color=7289DA&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="discord logo"  />
+</a>  <br>
+<a href="#">
+  <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="linkedin logo"
+</a> <br>
+<a href="mailto:redellen5@hotmail.com">
+  <img src="https://img.shields.io/static/v1?message=Email&logo=gmail&label=&color=EA4335&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="email logo" />
+</a>
+  
+<br>
 
 ## 📚 Estudando
-
-<p align="left">
   <a href="https://github.com/RedellenJ">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/github/github-original.svg" width="30" height="30"/>
-  </a>
-  </a>  
-  <a href="https://github.com/RedellenJ">
-    <img src="https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/git/git-original.svg" width="30" height="30"/>
-  </a>    
-    <a href="https://github.com/RedellenJ">
     <img src="https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/lua/lua-plain.svg" width="30" height="30"/>
   </a>
     <a href="https://github.com/RedellenJ">
@@ -39,7 +42,13 @@
 </p>
 
 ## ⚙️ Ferramentas
-
+  <a href="https://github.com/RedellenJ">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/github/github-original.svg" width="30" height="30"/>
+  </a>
+  </a>  
+  <a href="https://github.com/RedellenJ">
+    <img src="https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/git/git-original.svg" width="30" height="30"/>
+  </a>    
   <a href="https://github.com/RedellenJ">
     <img src="https://raw.githubusercontent.com/devicons/devicon/7330accdbc47e2dc0c19789a48533c4a3c50fe58/icons/vscode/vscode-original.svg" width="30" height="30"/>
   </a>     
@@ -55,11 +64,14 @@
 
 ## 📊 GitHub Stats
 
-<p align="left">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=RedellenJ&show_icons=true&theme=tokyonight&count_private=true" />
+<p align="center">
+  <img height="170" src="https://github-readme-stats.vercel.app/api?username=RedellenJ&show_icons=true&theme=tokyonight&count_private=true&cache_seconds=60" />
   <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=RedellenJ&layout=compact&theme=tokyonight" />
 </p>
 
+<p align="center">
+  <img height="170" src="https://streak-stats.demolab.com?user=RedellenJ&theme=tokyonight" />
+</p>
 ---
 
 ## 🚀 Filosofia
