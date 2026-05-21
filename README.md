@@ -19,7 +19,7 @@
   <a href="https://gyazo.com/cac906e60b338f597402af3eefec23de">
     <img src="https://img.shields.io/static/v1?message=Discord&logo=discord&label=&color=7289DA&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="discord logo" />
   </a>
-  <a href="#">
+  <a href="https://www.linkedin.com/in/redellen-junior-51a110331/">
     <img src="https://img.shields.io/static/v1?message=LinkedIn&logo=linkedin&label=&color=0077B5&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="linkedin logo" />
   </a>
   <a href="mailto:redellen5@hotmail.com">
