@@ -37,7 +37,7 @@
 
 ## ⚙️ Ferramentas
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=git,vscode,ps,figma" />
+  <img src="https://skillicons.dev/icons?i=git,vscode,ps,figma,windows" />
 </p>
 
 ---
