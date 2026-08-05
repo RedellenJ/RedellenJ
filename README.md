@@ -42,7 +42,7 @@
 
 ---
 
-## 📊 GitHub Stats
+<!-- ## 📊 GitHub Stats
 
 <!--
 <p align="center">
@@ -51,13 +51,13 @@
 </p>
 -->
 
-<p align="center">
+<!-- <p align="center">
   <img height="170" src="https://streak-stats.demolab.com?user=RedellenJ&theme=tokyonight" />
-</p>
+</p> -->
 
 ---
-
-[![Ashutosh's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=RedellenJ&bg_color=000000&color=2dc1ca&line=2dc1ca&point=0a855c&area=true&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
+<!--
+[![Ashutosh's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=RedellenJ&bg_color=000000&color=2dc1ca&line=2dc1ca&point=0a855c&area=true&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph) -->
 
 <picture align="center">
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/RedellenJ/RedellenJ/output/github-contribution-grid-snake-dark.svg" />
