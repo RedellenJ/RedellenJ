@@ -32,7 +32,7 @@
 
 ## 📚 Estudando
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=lua,linux,html,css,js,php,java" />
+  <img src="https://skillicons.dev/icons?i=lua,linux,html,css,js,cpp,java" />
 </p>
 
 ## ⚙️ Ferramentas
