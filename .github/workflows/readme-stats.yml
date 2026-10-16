@@ -31,17 +31,10 @@ jobs:
           "https://streak-stats.demolab.com/?user=RedellenJ&background=24292f&border=373e47&stroke=373e47&currStreakNum=adbac7&sideNums=adbac7&sideLabels=adbac7&dates=adbac7&ring=539bf5&currStreakLabel=539bf5&fire=539bf5" \
           -o assets/streak-stats.svg
 
-      - name: Download Activity Graph
-        run: |
-          curl -fsSL --retry 3 \
-          "https://github-readme-activity-graph.vercel.app/graph?username=RedellenJ&theme=github-dark-dimmed&radius=6&area=true" \
-          -o assets/activity-graph.svg
-
       - name: Validate SVG files
         run: |
           grep -q "<svg" assets/stats.svg
           grep -q "<svg" assets/streak-stats.svg
-          grep -q "<svg" assets/activity-graph.svg
 
       - name: Commit updated stats
         run: |
@@ -50,7 +43,6 @@ jobs:
 
           git add assets/stats.svg
           git add assets/streak-stats.svg
-          git add assets/activity-graph.svg
 
           if git diff --cached --quiet; then
             echo "No changes to commit."
