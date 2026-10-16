@@ -1,0 +1,60 @@
+name: Update GitHub Stats
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 3 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create assets directory
+        run: mkdir -p assets
+
+      - name: Download GitHub Stats
+        run: |
+          curl -fsSL --retry 3 \
+          "https://github-readme-stats.vercel.app/api?username=RedellenJ&show_icons=true&include_all_commits=true&count_private=true&theme=github_dark_dimmed&hide=stars&line_height=28&rank_icon=github" \
+          -o assets/stats.svg
+
+      - name: Download Streak Stats
+        run: |
+          curl -fsSL --retry 3 \
+          "https://streak-stats.demolab.com/?user=RedellenJ&background=24292f&border=373e47&stroke=373e47&currStreakNum=adbac7&sideNums=adbac7&sideLabels=adbac7&dates=adbac7&ring=539bf5&currStreakLabel=539bf5&fire=539bf5" \
+          -o assets/streak-stats.svg
+
+      - name: Download Activity Graph
+        run: |
+          curl -fsSL --retry 3 \
+          "https://github-readme-activity-graph.vercel.app/graph?username=RedellenJ&theme=github-dark-dimmed&radius=6&area=true" \
+          -o assets/activity-graph.svg
+
+      - name: Validate SVG files
+        run: |
+          grep -q "<svg" assets/stats.svg
+          grep -q "<svg" assets/streak-stats.svg
+          grep -q "<svg" assets/activity-graph.svg
+
+      - name: Commit updated stats
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add assets/stats.svg
+          git add assets/streak-stats.svg
+          git add assets/activity-graph.svg
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore: update GitHub stats"
+            git push
+          fi
