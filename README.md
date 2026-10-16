@@ -44,25 +44,48 @@
 
 ## 📊 GitHub Stats
 
+<div>
+  <a href="https://github.com/anuraghazra/github-readme-stats">
+    <img
+      src="https://raw.githubusercontent.com/RedellenJ/RedellenJ/main/assets/stats.svg"
+      alt="RedellenJ GitHub Stats"
+      width="48.7%"
+      align="left"
+    />
+  </a>
 
-<!-- <p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=RedellenJ&show_icons=true&theme=tokyonight&count_private=true&cache_seconds=60" />
-  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=RedellenJ&layout=compact&theme=tokyonight" />
-</p> -->
+  <a href="https://github.com/denvercoder1/github-readme-streak-stats">
+    <img
+      src="https://raw.githubusercontent.com/RedellenJ/RedellenJ/main/assets/streak-stats.svg"
+      alt="RedellenJ GitHub Streak"
+      width="48.7%"
+    />
+  </a>
+</div>
 
+<br>
 
-<p align="center">
-  <img height="170" src="https://streak-stats.demolab.com?user=RedellenJ&theme=tokyonight" />
-</p>
+<a href="https://github.com/Ashutosh00710/github-readme-activity-graph">
+  <img
+    src="https://raw.githubusercontent.com/RedellenJ/RedellenJ/main/assets/activity-graph.svg"
+    alt="RedellenJ Contribution Graph"
+    width="99.8%"
+  />
+</a>
 
 ---
 
-[![Ashutosh's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=RedellenJ&bg_color=000000&color=2dc1ca&line=2dc1ca&point=0a855c&area=true&hide_border=true)](https://github.com/ashutosh00710/github-readme-activity-graph)
-
 <picture align="center">
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/RedellenJ/RedellenJ/output/github-contribution-grid-snake-dark.svg" />
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/RedellenJ/RedellenJ/output/github-contribution-grid-snake-dark.svg" />
-  <img align="center" alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/RedellenJ/RedellenJ/output/github-contribution-grid-snake.svg" />
+  <source
+    media="(prefers-color-scheme: dark)"
+    srcset="https://raw.githubusercontent.com/RedellenJ/RedellenJ/output/github-contribution-grid-snake-dark.svg"
+  />
+  <source
+    media="(prefers-color-scheme: light)"
+    srcset="https://raw.githubusercontent.com/RedellenJ/RedellenJ/output/github-contribution-grid-snake.svg"
+  />
+  <img
+    alt="github contribution grid snake animation"
+    src="https://raw.githubusercontent.com/RedellenJ/RedellenJ/output/github-contribution-grid-snake.svg"
+  />
 </picture>
-
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=2dc1ca&height=120&section=footer" />
