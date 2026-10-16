@@ -65,13 +65,11 @@
 
 <br>
 
-<a href="https://github.com/Ashutosh00710/github-readme-activity-graph">
-  <img
-    src="https://github-readme-activity-graph.vercel.app/graph?username=RedellenJ&theme=github-dark-dimmed&radius=6&area=true"
-    alt="RedellenJ Contribution Graph"
-    width="99.8%"
-  />
-</a>
+<img
+  src="https://raw.githubusercontent.com/RedellenJ/RedellenJ/main/assets/activity-graph.svg"
+  alt="RedellenJ Contribution Graph"
+  width="99.8%"
+/>
 
 ---
 
