@@ -31,10 +31,118 @@ jobs:
           "https://streak-stats.demolab.com/?user=RedellenJ&background=24292f&border=373e47&stroke=373e47&currStreakNum=adbac7&sideNums=adbac7&sideLabels=adbac7&dates=adbac7&ring=539bf5&currStreakLabel=539bf5&fire=539bf5" \
           -o assets/streak-stats.svg
 
+      - name: Generate Contribution Graph
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          from datetime import date, timedelta
+
+          username = "RedellenJ"
+          today = date.today()
+          start = today - timedelta(days=30)
+
+          query = '''
+          query($login:String!, $from:DateTime!, $to:DateTime!) {
+            user(login:$login) {
+              contributionsCollection(from:$from, to:$to) {
+                contributionCalendar {
+                  weeks {
+                    contributionDays {
+                      date
+                      contributionCount
+                    }
+                  }
+                }
+              }
+            }
+          }
+          '''
+
+          payload = json.dumps({
+            "query": query,
+            "variables": {
+              "login": username,
+              "from": start.isoformat() + "T00:00:00Z",
+              "to": today.isoformat() + "T23:59:59Z"
+            }
+          }).encode()
+
+          req = urllib.request.Request(
+            "https://api.github.com/graphql",
+            data=payload,
+            headers={
+              "Authorization": "Bearer " + os.environ["GH_TOKEN"],
+              "Content-Type": "application/json",
+              "User-Agent": "RedellenJ-profile-stats"
+            }
+          )
+
+          with urllib.request.urlopen(req) as r:
+            data = json.load(r)
+
+          days = []
+          weeks = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+          for week in weeks:
+            for d in week["contributionDays"]:
+              dt = date.fromisoformat(d["date"])
+              if start <= dt <= today:
+                days.append((dt, d["contributionCount"]))
+          days.sort()
+
+          width, height = 1000, 300
+          left, right, top, bottom = 62, 24, 58, 48
+          plot_w = width - left - right
+          plot_h = height - top - bottom
+          max_v = max([v for _, v in days] + [5])
+          y_max = ((max_v + 4) // 5) * 5
+
+          def x(i):
+            return left + (plot_w * i / max(1, len(days)-1))
+
+          def y(v):
+            return top + plot_h - (plot_h * v / y_max)
+
+          pts = " ".join(f"{x(i):.1f},{y(v):.1f}" for i, (_, v) in enumerate(days))
+          area_pts = f"{left},{top+plot_h} " + pts + f" {left+plot_w},{top+plot_h}"
+
+          grid = []
+          for val in range(0, y_max + 1, 5):
+            yy = y(val)
+            grid.append(f'<line x1="{left}" y1="{yy:.1f}" x2="{left+plot_w}" y2="{yy:.1f}" stroke="#444c56" stroke-dasharray="3 3"/>')
+            grid.append(f'<text x="{left-12}" y="{yy+4:.1f}" text-anchor="end" fill="#adbac7" font-size="12">{val}</text>')
+
+          labels = []
+          step = max(1, len(days)//10)
+          for i, (dt, _) in enumerate(days):
+            if i % step == 0 or i == len(days)-1:
+              labels.append(f'<text x="{x(i):.1f}" y="{height-20}" text-anchor="middle" fill="#adbac7" font-size="11">{dt.day}</text>')
+
+          circles = "".join(
+            f'<circle cx="{x(i):.1f}" cy="{y(v):.1f}" r="4" fill="#539bf5"/>'
+            for i, (_, v) in enumerate(days)
+          )
+
+          svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
+          <rect width="100%" height="100%" rx="6" fill="#24292f" stroke="#373e47"/>
+          <text x="{width/2}" y="32" text-anchor="middle" fill="#539bf5" font-family="Arial, sans-serif" font-size="20" font-weight="600">RedellenJ's Contribution Graph</text>
+          <g font-family="Arial, sans-serif">{''.join(grid)}{''.join(labels)}</g>
+          <polygon points="{area_pts}" fill="#539bf5" opacity="0.12"/>
+          <polyline points="{pts}" fill="none" stroke="#adbac7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          {circles}
+          <text x="20" y="{top+plot_h/2}" fill="#adbac7" font-family="Arial, sans-serif" font-size="12" transform="rotate(-90 20 {top+plot_h/2})" text-anchor="middle">Contributions</text>
+          </svg>'''
+
+          with open("assets/activity-graph.svg", "w", encoding="utf-8") as f:
+            f.write(svg)
+          PY
+
       - name: Validate SVG files
         run: |
           grep -q "<svg" assets/stats.svg
           grep -q "<svg" assets/streak-stats.svg
+          grep -q "<svg" assets/activity-graph.svg
           ! grep -q "Something went wrong" assets/stats.svg
 
       - name: Commit updated stats
@@ -42,7 +150,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add assets/stats.svg assets/streak-stats.svg
+          git add assets/stats.svg assets/streak-stats.svg assets/activity-graph.svg
 
           if git diff --cached --quiet; then
             echo "No changes to commit."
