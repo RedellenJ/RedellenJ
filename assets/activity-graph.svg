@@ -1,9 +1,76 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="300" viewBox="0 0 1000 300">
-<rect width="100%" height="100%" rx="6" fill="#24292f" stroke="#373e47"/>
-<text x="500.0" y="32" text-anchor="middle" fill="#539bf5" font-family="Arial, sans-serif" font-size="20" font-weight="600">RedellenJ's Contribution Graph</text>
-<g font-family="Arial, sans-serif"><line x1="62" y1="252.0" x2="976" y2="252.0" stroke="#444c56" stroke-dasharray="3 3"/><text x="50" y="256.0" text-anchor="end" fill="#adbac7" font-size="12">0</text><line x1="62" y1="155.0" x2="976" y2="155.0" stroke="#444c56" stroke-dasharray="3 3"/><text x="50" y="159.0" text-anchor="end" fill="#adbac7" font-size="12">5</text><line x1="62" y1="58.0" x2="976" y2="58.0" stroke="#444c56" stroke-dasharray="3 3"/><text x="50" y="62.0" text-anchor="end" fill="#adbac7" font-size="12">10</text><text x="62.0" y="280" text-anchor="middle" fill="#adbac7" font-size="11">16</text><text x="153.4" y="280" text-anchor="middle" fill="#adbac7" font-size="11">19</text><text x="244.8" y="280" text-anchor="middle" fill="#adbac7" font-size="11">22</text><text x="336.2" y="280" text-anchor="middle" fill="#adbac7" font-size="11">25</text><text x="427.6" y="280" text-anchor="middle" fill="#adbac7" font-size="11">28</text><text x="519.0" y="280" text-anchor="middle" fill="#adbac7" font-size="11">1</text><text x="610.4" y="280" text-anchor="middle" fill="#adbac7" font-size="11">4</text><text x="701.8" y="280" text-anchor="middle" fill="#adbac7" font-size="11">7</text><text x="793.2" y="280" text-anchor="middle" fill="#adbac7" font-size="11">10</text><text x="884.6" y="280" text-anchor="middle" fill="#adbac7" font-size="11">13</text><text x="976.0" y="280" text-anchor="middle" fill="#adbac7" font-size="11">16</text></g>
-<polygon points="62,252 62.0,252.0 92.5,252.0 122.9,252.0 153.4,252.0 183.9,252.0 214.3,252.0 244.8,252.0 275.3,252.0 305.7,232.6 336.2,252.0 366.7,252.0 397.1,252.0 427.6,252.0 458.1,252.0 488.5,252.0 519.0,252.0 549.5,252.0 579.9,232.6 610.4,232.6 640.9,252.0 671.3,232.6 701.8,252.0 732.3,252.0 762.7,252.0 793.2,252.0 823.7,252.0 854.1,252.0 884.6,213.2 915.1,252.0 945.5,252.0 976.0,96.8 976,252" fill="#539bf5" opacity="0.12"/>
-<polyline points="62.0,252.0 92.5,252.0 122.9,252.0 153.4,252.0 183.9,252.0 214.3,252.0 244.8,252.0 275.3,252.0 305.7,232.6 336.2,252.0 366.7,252.0 397.1,252.0 427.6,252.0 458.1,252.0 488.5,252.0 519.0,252.0 549.5,252.0 579.9,232.6 610.4,232.6 640.9,252.0 671.3,232.6 701.8,252.0 732.3,252.0 762.7,252.0 793.2,252.0 823.7,252.0 854.1,252.0 884.6,213.2 915.1,252.0 945.5,252.0 976.0,96.8" fill="none" stroke="#adbac7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-<circle cx="62.0" cy="252.0" r="4" fill="#539bf5"/><circle cx="92.5" cy="252.0" r="4" fill="#539bf5"/><circle cx="122.9" cy="252.0" r="4" fill="#539bf5"/><circle cx="153.4" cy="252.0" r="4" fill="#539bf5"/><circle cx="183.9" cy="252.0" r="4" fill="#539bf5"/><circle cx="214.3" cy="252.0" r="4" fill="#539bf5"/><circle cx="244.8" cy="252.0" r="4" fill="#539bf5"/><circle cx="275.3" cy="252.0" r="4" fill="#539bf5"/><circle cx="305.7" cy="232.6" r="4" fill="#539bf5"/><circle cx="336.2" cy="252.0" r="4" fill="#539bf5"/><circle cx="366.7" cy="252.0" r="4" fill="#539bf5"/><circle cx="397.1" cy="252.0" r="4" fill="#539bf5"/><circle cx="427.6" cy="252.0" r="4" fill="#539bf5"/><circle cx="458.1" cy="252.0" r="4" fill="#539bf5"/><circle cx="488.5" cy="252.0" r="4" fill="#539bf5"/><circle cx="519.0" cy="252.0" r="4" fill="#539bf5"/><circle cx="549.5" cy="252.0" r="4" fill="#539bf5"/><circle cx="579.9" cy="232.6" r="4" fill="#539bf5"/><circle cx="610.4" cy="232.6" r="4" fill="#539bf5"/><circle cx="640.9" cy="252.0" r="4" fill="#539bf5"/><circle cx="671.3" cy="232.6" r="4" fill="#539bf5"/><circle cx="701.8" cy="252.0" r="4" fill="#539bf5"/><circle cx="732.3" cy="252.0" r="4" fill="#539bf5"/><circle cx="762.7" cy="252.0" r="4" fill="#539bf5"/><circle cx="793.2" cy="252.0" r="4" fill="#539bf5"/><circle cx="823.7" cy="252.0" r="4" fill="#539bf5"/><circle cx="854.1" cy="252.0" r="4" fill="#539bf5"/><circle cx="884.6" cy="213.2" r="4" fill="#539bf5"/><circle cx="915.1" cy="252.0" r="4" fill="#539bf5"/><circle cx="945.5" cy="252.0" r="4" fill="#539bf5"/><circle cx="976.0" cy="96.8" r="4" fill="#539bf5"/>
-<text x="20" y="155.0" fill="#adbac7" font-family="Arial, sans-serif" font-size="12" transform="rotate(-90 20 155.0)" text-anchor="middle">Contributions</text>
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1000"
+  height="320"
+  viewBox="0 0 1000 320"
+>
+
+  <rect
+    width="100%"
+    height="100%"
+    rx="6"
+    fill="#24292f"
+    stroke="#373e47"
+  />
+
+  <text
+    x="500.0"
+    y="32"
+    text-anchor="middle"
+    fill="#539bf5"
+    font-family="Arial, sans-serif"
+    font-size="20"
+    font-weight="600"
+  >
+    RedellenJ's Contribution Graph
+  </text>
+
+  <g font-family="Arial, sans-serif">
+    <line x1="68" y1="264.00" x2="976" y2="264.00" stroke="#444c56" stroke-dasharray="3 3"/><line x1="68" y1="159.00" x2="976" y2="159.00" stroke="#444c56" stroke-dasharray="3 3"/><line x1="68" y1="54.00" x2="976" y2="54.00" stroke="#444c56" stroke-dasharray="3 3"/>
+    <line x1="68.00" y1="54" x2="68.00" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="98.27" y1="54" x2="98.27" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="128.53" y1="54" x2="128.53" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="158.80" y1="54" x2="158.80" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="189.07" y1="54" x2="189.07" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="219.33" y1="54" x2="219.33" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="249.60" y1="54" x2="249.60" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="279.87" y1="54" x2="279.87" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="310.13" y1="54" x2="310.13" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="340.40" y1="54" x2="340.40" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="370.67" y1="54" x2="370.67" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="400.93" y1="54" x2="400.93" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="431.20" y1="54" x2="431.20" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="461.47" y1="54" x2="461.47" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="491.73" y1="54" x2="491.73" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="522.00" y1="54" x2="522.00" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="552.27" y1="54" x2="552.27" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="582.53" y1="54" x2="582.53" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="612.80" y1="54" x2="612.80" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="643.07" y1="54" x2="643.07" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="673.33" y1="54" x2="673.33" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="703.60" y1="54" x2="703.60" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="733.87" y1="54" x2="733.87" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="764.13" y1="54" x2="764.13" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="794.40" y1="54" x2="794.40" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="824.67" y1="54" x2="824.67" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="854.93" y1="54" x2="854.93" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="885.20" y1="54" x2="885.20" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="915.47" y1="54" x2="915.47" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="945.73" y1="54" x2="945.73" y2="264" stroke="#444c56" stroke-dasharray="3 3"/><line x1="976.00" y1="54" x2="976.00" y2="264" stroke="#444c56" stroke-dasharray="3 3"/>
+    <text x="56" y="268.00" text-anchor="end" fill="#adbac7" font-size="12">0</text><text x="56" y="163.00" text-anchor="end" fill="#adbac7" font-size="12">5</text><text x="56" y="58.00" text-anchor="end" fill="#adbac7" font-size="12">10</text>
+    <text x="68.00" y="302" text-anchor="middle" fill="#adbac7" font-size="11">17</text><text x="98.27" y="302" text-anchor="middle" fill="#adbac7" font-size="11">18</text><text x="128.53" y="302" text-anchor="middle" fill="#adbac7" font-size="11">19</text><text x="158.80" y="302" text-anchor="middle" fill="#adbac7" font-size="11">20</text><text x="189.07" y="302" text-anchor="middle" fill="#adbac7" font-size="11">21</text><text x="219.33" y="302" text-anchor="middle" fill="#adbac7" font-size="11">22</text><text x="249.60" y="302" text-anchor="middle" fill="#adbac7" font-size="11">23</text><text x="279.87" y="302" text-anchor="middle" fill="#adbac7" font-size="11">24</text><text x="310.13" y="302" text-anchor="middle" fill="#adbac7" font-size="11">25</text><text x="340.40" y="302" text-anchor="middle" fill="#adbac7" font-size="11">26</text><text x="370.67" y="302" text-anchor="middle" fill="#adbac7" font-size="11">27</text><text x="400.93" y="302" text-anchor="middle" fill="#adbac7" font-size="11">28</text><text x="431.20" y="302" text-anchor="middle" fill="#adbac7" font-size="11">29</text><text x="461.47" y="302" text-anchor="middle" fill="#adbac7" font-size="11">30</text><text x="491.73" y="302" text-anchor="middle" fill="#adbac7" font-size="11">1</text><text x="522.00" y="302" text-anchor="middle" fill="#adbac7" font-size="11">2</text><text x="552.27" y="302" text-anchor="middle" fill="#adbac7" font-size="11">3</text><text x="582.53" y="302" text-anchor="middle" fill="#adbac7" font-size="11">4</text><text x="612.80" y="302" text-anchor="middle" fill="#adbac7" font-size="11">5</text><text x="643.07" y="302" text-anchor="middle" fill="#adbac7" font-size="11">6</text><text x="673.33" y="302" text-anchor="middle" fill="#adbac7" font-size="11">7</text><text x="703.60" y="302" text-anchor="middle" fill="#adbac7" font-size="11">8</text><text x="733.87" y="302" text-anchor="middle" fill="#adbac7" font-size="11">9</text><text x="764.13" y="302" text-anchor="middle" fill="#adbac7" font-size="11">10</text><text x="794.40" y="302" text-anchor="middle" fill="#adbac7" font-size="11">11</text><text x="824.67" y="302" text-anchor="middle" fill="#adbac7" font-size="11">12</text><text x="854.93" y="302" text-anchor="middle" fill="#adbac7" font-size="11">13</text><text x="885.20" y="302" text-anchor="middle" fill="#adbac7" font-size="11">14</text><text x="915.47" y="302" text-anchor="middle" fill="#adbac7" font-size="11">15</text><text x="945.73" y="302" text-anchor="middle" fill="#adbac7" font-size="11">16</text><text x="976.00" y="302" text-anchor="middle" fill="#adbac7" font-size="11">17</text>
+  </g>
+
+  <path
+    d="M 68.00,264.00 C 73.04,264.00 88.18,264.00 98.27,264.00 C 108.36,264.00 118.44,264.00 128.53,264.00 C 138.62,264.00 148.71,264.00 158.80,264.00 C 168.89,264.00 178.98,264.00 189.07,264.00 C 199.16,264.00 209.24,264.00 219.33,264.00 C 229.42,264.00 239.51,267.50 249.60,264.00 C 259.69,260.50 269.78,243.00 279.87,243.00 C 289.96,243.00 300.04,260.50 310.13,264.00 C 320.22,267.50 330.31,264.00 340.40,264.00 C 350.49,264.00 360.58,264.00 370.67,264.00 C 380.76,264.00 390.84,264.00 400.93,264.00 C 411.02,264.00 421.11,264.00 431.20,264.00 C 441.29,264.00 451.38,264.00 461.47,264.00 C 471.56,264.00 481.64,264.00 491.73,264.00 C 501.82,264.00 511.91,267.50 522.00,264.00 C 532.09,260.50 542.18,246.50 552.27,243.00 C 562.36,239.50 572.44,239.50 582.53,243.00 C 592.62,246.50 602.71,264.00 612.80,264.00 C 622.89,264.00 632.98,243.00 643.07,243.00 C 653.16,243.00 663.24,260.50 673.33,264.00 C 683.42,267.50 693.51,264.00 703.60,264.00 C 713.69,264.00 723.78,264.00 733.87,264.00 C 743.96,264.00 754.04,264.00 764.13,264.00 C 774.22,264.00 784.31,264.00 794.40,264.00 C 804.49,264.00 814.58,271.00 824.67,264.00 C 834.76,257.00 844.84,222.00 854.93,222.00 C 865.02,222.00 875.11,257.00 885.20,264.00 C 895.29,271.00 905.38,292.00 915.47,264.00 C 925.56,236.00 935.64,96.00 945.73,96.00 C 955.82,96.00 970.96,236.00 976.00,264.00 L 976.00,264.00 L 68.00,264.00 Z"
+    fill="#adbac7"
+    opacity="0.10"
+  />
+
+  <path
+    d="M 68.00,264.00 C 73.04,264.00 88.18,264.00 98.27,264.00 C 108.36,264.00 118.44,264.00 128.53,264.00 C 138.62,264.00 148.71,264.00 158.80,264.00 C 168.89,264.00 178.98,264.00 189.07,264.00 C 199.16,264.00 209.24,264.00 219.33,264.00 C 229.42,264.00 239.51,267.50 249.60,264.00 C 259.69,260.50 269.78,243.00 279.87,243.00 C 289.96,243.00 300.04,260.50 310.13,264.00 C 320.22,267.50 330.31,264.00 340.40,264.00 C 350.49,264.00 360.58,264.00 370.67,264.00 C 380.76,264.00 390.84,264.00 400.93,264.00 C 411.02,264.00 421.11,264.00 431.20,264.00 C 441.29,264.00 451.38,264.00 461.47,264.00 C 471.56,264.00 481.64,264.00 491.73,264.00 C 501.82,264.00 511.91,267.50 522.00,264.00 C 532.09,260.50 542.18,246.50 552.27,243.00 C 562.36,239.50 572.44,239.50 582.53,243.00 C 592.62,246.50 602.71,264.00 612.80,264.00 C 622.89,264.00 632.98,243.00 643.07,243.00 C 653.16,243.00 663.24,260.50 673.33,264.00 C 683.42,267.50 693.51,264.00 703.60,264.00 C 713.69,264.00 723.78,264.00 733.87,264.00 C 743.96,264.00 754.04,264.00 764.13,264.00 C 774.22,264.00 784.31,264.00 794.40,264.00 C 804.49,264.00 814.58,271.00 824.67,264.00 C 834.76,257.00 844.84,222.00 854.93,222.00 C 865.02,222.00 875.11,257.00 885.20,264.00 C 895.29,271.00 905.38,292.00 915.47,264.00 C 925.56,236.00 935.64,96.00 945.73,96.00 C 955.82,96.00 970.96,236.00 976.00,264.00"
+    fill="none"
+    stroke="#adbac7"
+    stroke-width="4"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+
+  <circle cx="68.00" cy="264.00" r="4" fill="#539bf5"/><circle cx="98.27" cy="264.00" r="4" fill="#539bf5"/><circle cx="128.53" cy="264.00" r="4" fill="#539bf5"/><circle cx="158.80" cy="264.00" r="4" fill="#539bf5"/><circle cx="189.07" cy="264.00" r="4" fill="#539bf5"/><circle cx="219.33" cy="264.00" r="4" fill="#539bf5"/><circle cx="249.60" cy="264.00" r="4" fill="#539bf5"/><circle cx="279.87" cy="243.00" r="4" fill="#539bf5"/><circle cx="310.13" cy="264.00" r="4" fill="#539bf5"/><circle cx="340.40" cy="264.00" r="4" fill="#539bf5"/><circle cx="370.67" cy="264.00" r="4" fill="#539bf5"/><circle cx="400.93" cy="264.00" r="4" fill="#539bf5"/><circle cx="431.20" cy="264.00" r="4" fill="#539bf5"/><circle cx="461.47" cy="264.00" r="4" fill="#539bf5"/><circle cx="491.73" cy="264.00" r="4" fill="#539bf5"/><circle cx="522.00" cy="264.00" r="4" fill="#539bf5"/><circle cx="552.27" cy="243.00" r="4" fill="#539bf5"/><circle cx="582.53" cy="243.00" r="4" fill="#539bf5"/><circle cx="612.80" cy="264.00" r="4" fill="#539bf5"/><circle cx="643.07" cy="243.00" r="4" fill="#539bf5"/><circle cx="673.33" cy="264.00" r="4" fill="#539bf5"/><circle cx="703.60" cy="264.00" r="4" fill="#539bf5"/><circle cx="733.87" cy="264.00" r="4" fill="#539bf5"/><circle cx="764.13" cy="264.00" r="4" fill="#539bf5"/><circle cx="794.40" cy="264.00" r="4" fill="#539bf5"/><circle cx="824.67" cy="264.00" r="4" fill="#539bf5"/><circle cx="854.93" cy="222.00" r="4" fill="#539bf5"/><circle cx="885.20" cy="264.00" r="4" fill="#539bf5"/><circle cx="915.47" cy="264.00" r="4" fill="#539bf5"/><circle cx="945.73" cy="96.00" r="4" fill="#539bf5"/><circle cx="976.00" cy="264.00" r="4" fill="#539bf5"/>
+
+  <text
+    x="500.0"
+    y="316"
+    text-anchor="middle"
+    fill="#adbac7"
+    font-family="Arial, sans-serif"
+    font-size="12"
+  >
+    Days
+  </text>
+
+  <text
+    x="18"
+    y="159.0"
+    fill="#adbac7"
+    font-family="Arial, sans-serif"
+    font-size="12"
+    transform="rotate(-90 18 159.0)"
+    text-anchor="middle"
+  >
+    Contributions
+  </text>
+
 </svg>
