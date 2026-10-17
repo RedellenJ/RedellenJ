@@ -36,14 +36,16 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python3 - <<'PY'
-          import json, os, urllib.request
+          import json
+          import os
+          import urllib.request
           from datetime import date, timedelta
 
           username = "RedellenJ"
           today = date.today()
           start = today - timedelta(days=30)
 
-          query = '''
+          query = """
           query($login:String!, $from:DateTime!, $to:DateTime!) {
             user(login:$login) {
               contributionsCollection(from:$from, to:$to) {
@@ -58,7 +60,7 @@ jobs:
               }
             }
           }
-          '''
+          """
 
           payload = json.dumps({
             "query": query,
@@ -69,7 +71,7 @@ jobs:
             }
           }).encode()
 
-          req = urllib.request.Request(
+          request = urllib.request.Request(
             "https://api.github.com/graphql",
             data=payload,
             headers={
@@ -79,63 +81,302 @@ jobs:
             }
           )
 
-          with urllib.request.urlopen(req) as r:
-            data = json.load(r)
+          with urllib.request.urlopen(request) as response:
+            data = json.load(response)
 
           days = []
-          weeks = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
-          for week in weeks:
-            for d in week["contributionDays"]:
-              dt = date.fromisoformat(d["date"])
-              if start <= dt <= today:
-                days.append((dt, d["contributionCount"]))
-          days.sort()
 
-          width, height = 1000, 300
-          left, right, top, bottom = 62, 24, 58, 48
-          plot_w = width - left - right
-          plot_h = height - top - bottom
-          max_v = max([v for _, v in days] + [5])
-          y_max = ((max_v + 4) // 5) * 5
-
-          def x(i):
-            return left + (plot_w * i / max(1, len(days)-1))
-
-          def y(v):
-            return top + plot_h - (plot_h * v / y_max)
-
-          pts = " ".join(f"{x(i):.1f},{y(v):.1f}" for i, (_, v) in enumerate(days))
-          area_pts = f"{left},{top+plot_h} " + pts + f" {left+plot_w},{top+plot_h}"
-
-          grid = []
-          for val in range(0, y_max + 1, 5):
-            yy = y(val)
-            grid.append(f'<line x1="{left}" y1="{yy:.1f}" x2="{left+plot_w}" y2="{yy:.1f}" stroke="#444c56" stroke-dasharray="3 3"/>')
-            grid.append(f'<text x="{left-12}" y="{yy+4:.1f}" text-anchor="end" fill="#adbac7" font-size="12">{val}</text>')
-
-          labels = []
-          step = max(1, len(days)//10)
-          for i, (dt, _) in enumerate(days):
-            if i % step == 0 or i == len(days)-1:
-              labels.append(f'<text x="{x(i):.1f}" y="{height-20}" text-anchor="middle" fill="#adbac7" font-size="11">{dt.day}</text>')
-
-          circles = "".join(
-            f'<circle cx="{x(i):.1f}" cy="{y(v):.1f}" r="4" fill="#539bf5"/>'
-            for i, (_, v) in enumerate(days)
+          weeks = (
+            data["data"]["user"]
+            ["contributionsCollection"]
+            ["contributionCalendar"]
+            ["weeks"]
           )
 
-          svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">
-          <rect width="100%" height="100%" rx="6" fill="#24292f" stroke="#373e47"/>
-          <text x="{width/2}" y="32" text-anchor="middle" fill="#539bf5" font-family="Arial, sans-serif" font-size="20" font-weight="600">RedellenJ's Contribution Graph</text>
-          <g font-family="Arial, sans-serif">{''.join(grid)}{''.join(labels)}</g>
-          <polygon points="{area_pts}" fill="#539bf5" opacity="0.12"/>
-          <polyline points="{pts}" fill="none" stroke="#adbac7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-          {circles}
-          <text x="20" y="{top+plot_h/2}" fill="#adbac7" font-family="Arial, sans-serif" font-size="12" transform="rotate(-90 20 {top+plot_h/2})" text-anchor="middle">Contributions</text>
-          </svg>'''
+          for week in weeks:
+            for item in week["contributionDays"]:
+              current_date = date.fromisoformat(item["date"])
 
-          with open("assets/activity-graph.svg", "w", encoding="utf-8") as f:
-            f.write(svg)
+              if start <= current_date <= today:
+                days.append(
+                  (
+                    current_date,
+                    item["contributionCount"]
+                  )
+                )
+
+          days.sort()
+
+          width = 1000
+          height = 320
+
+          left = 68
+          right = 24
+          top = 54
+          bottom = 56
+
+          plot_width = width - left - right
+          plot_height = height - top - bottom
+
+          max_value = max(
+            [value for _, value in days] + [10]
+          )
+
+          y_max = max(
+            10,
+            ((max_value + 4) // 5) * 5
+          )
+
+          def x(index):
+            return left + (
+              plot_width
+              * index
+              / max(1, len(days) - 1)
+            )
+
+          def y(value):
+            return (
+              top
+              + plot_height
+              - (
+                plot_height
+                * value
+                / y_max
+              )
+            )
+
+          points = [
+            (
+              x(index),
+              y(value)
+            )
+            for index, (_, value)
+            in enumerate(days)
+          ]
+
+          def smooth_path(points):
+            if not points:
+              return ""
+
+            if len(points) == 1:
+              px, py = points[0]
+              return f"M {px:.2f},{py:.2f}"
+
+            path = [
+              f"M {points[0][0]:.2f},{points[0][1]:.2f}"
+            ]
+
+            total = len(points)
+
+            for index in range(total - 1):
+
+              p0 = (
+                points[index - 1]
+                if index > 0
+                else points[index]
+              )
+
+              p1 = points[index]
+              p2 = points[index + 1]
+
+              p3 = (
+                points[index + 2]
+                if index + 2 < total
+                else p2
+              )
+
+              cp1x = (
+                p1[0]
+                + (p2[0] - p0[0]) / 6
+              )
+
+              cp1y = (
+                p1[1]
+                + (p2[1] - p0[1]) / 6
+              )
+
+              cp2x = (
+                p2[0]
+                - (p3[0] - p1[0]) / 6
+              )
+
+              cp2y = (
+                p2[1]
+                - (p3[1] - p1[1]) / 6
+              )
+
+              path.append(
+                f"C "
+                f"{cp1x:.2f},{cp1y:.2f} "
+                f"{cp2x:.2f},{cp2y:.2f} "
+                f"{p2[0]:.2f},{p2[1]:.2f}"
+              )
+
+            return " ".join(path)
+
+          line_path = smooth_path(points)
+
+          area_path = (
+            line_path
+            + f" L {points[-1][0]:.2f},{top + plot_height:.2f}"
+            + f" L {points[0][0]:.2f},{top + plot_height:.2f}"
+            + " Z"
+          )
+
+          horizontal_grid = []
+          y_labels = []
+
+          for value in range(
+            0,
+            y_max + 1,
+            5
+          ):
+
+            yy = y(value)
+
+            horizontal_grid.append(
+              f'<line '
+              f'x1="{left}" '
+              f'y1="{yy:.2f}" '
+              f'x2="{left + plot_width}" '
+              f'y2="{yy:.2f}" '
+              f'stroke="#444c56" '
+              f'stroke-dasharray="3 3"/>'
+            )
+
+            y_labels.append(
+              f'<text '
+              f'x="{left - 12}" '
+              f'y="{yy + 4:.2f}" '
+              f'text-anchor="end" '
+              f'fill="#adbac7" '
+              f'font-size="12">'
+              f'{value}'
+              f'</text>'
+            )
+
+          vertical_grid = []
+          x_labels = []
+
+          for index, (current_date, _) in enumerate(days):
+
+            xx = x(index)
+
+            vertical_grid.append(
+              f'<line '
+              f'x1="{xx:.2f}" '
+              f'y1="{top}" '
+              f'x2="{xx:.2f}" '
+              f'y2="{top + plot_height}" '
+              f'stroke="#444c56" '
+              f'stroke-dasharray="3 3"/>'
+            )
+
+            x_labels.append(
+              f'<text '
+              f'x="{xx:.2f}" '
+              f'y="{height - 18}" '
+              f'text-anchor="middle" '
+              f'fill="#adbac7" '
+              f'font-size="11">'
+              f'{current_date.day}'
+              f'</text>'
+            )
+
+          circles = "".join(
+            f'<circle '
+            f'cx="{px:.2f}" '
+            f'cy="{py:.2f}" '
+            f'r="4" '
+            f'fill="#539bf5"/>'
+            for px, py in points
+          )
+
+          svg = f"""
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="{width}"
+            height="{height}"
+            viewBox="0 0 {width} {height}"
+          >
+
+            <rect
+              width="100%"
+              height="100%"
+              rx="6"
+              fill="#24292f"
+              stroke="#373e47"
+            />
+
+            <text
+              x="{width / 2}"
+              y="32"
+              text-anchor="middle"
+              fill="#539bf5"
+              font-family="Arial, sans-serif"
+              font-size="20"
+              font-weight="600"
+            >
+              RedellenJ's Contribution Graph
+            </text>
+
+            <g font-family="Arial, sans-serif">
+              {''.join(horizontal_grid)}
+              {''.join(vertical_grid)}
+              {''.join(y_labels)}
+              {''.join(x_labels)}
+            </g>
+
+            <path
+              d="{area_path}"
+              fill="#adbac7"
+              opacity="0.10"
+            />
+
+            <path
+              d="{line_path}"
+              fill="none"
+              stroke="#adbac7"
+              stroke-width="4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+
+            {circles}
+
+            <text
+              x="{width / 2}"
+              y="{height - 4}"
+              text-anchor="middle"
+              fill="#adbac7"
+              font-family="Arial, sans-serif"
+              font-size="12"
+            >
+              Days
+            </text>
+
+            <text
+              x="18"
+              y="{top + plot_height / 2}"
+              fill="#adbac7"
+              font-family="Arial, sans-serif"
+              font-size="12"
+              transform="rotate(-90 18 {top + plot_height / 2})"
+              text-anchor="middle"
+            >
+              Contributions
+            </text>
+
+          </svg>
+          """
+
+          with open(
+            "assets/activity-graph.svg",
+            "w",
+            encoding="utf-8"
+          ) as file:
+            file.write(svg)
+
           PY
 
       - name: Validate SVG files
@@ -150,7 +391,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add assets/stats.svg assets/streak-stats.svg assets/activity-graph.svg
+          git add \
+            assets/stats.svg \
+            assets/streak-stats.svg \
+            assets/activity-graph.svg
 
           if git diff --cached --quiet; then
             echo "No changes to commit."
