@@ -22,14 +22,14 @@ jobs:
       - name: Download GitHub Stats
         run: |
           curl -fsSL --retry 3 \
-          "https://github-readme-stats.vercel.app/api?username=RedellenJ&show_icons=true&theme=github_dark_dimmed&hide=stars&line_height=28&rank_icon=github" \
-          -o assets/stats.svg
+            "https://github-readme-stats.vercel.app/api?username=RedellenJ&show_icons=true&theme=github_dark_dimmed&hide=stars&line_height=28&rank_icon=github" \
+            -o assets/stats.svg
 
       - name: Download Streak Stats
         run: |
           curl -fsSL --retry 3 \
-          "https://streak-stats.demolab.com/?user=RedellenJ&background=24292f&border=373e47&stroke=373e47&currStreakNum=adbac7&sideNums=adbac7&sideLabels=adbac7&dates=adbac7&ring=539bf5&currStreakLabel=539bf5&fire=539bf5" \
-          -o assets/streak-stats.svg
+            "https://streak-stats.demolab.com/?user=RedellenJ&background=24292f&border=373e47&stroke=373e47&currStreakNum=adbac7&sideNums=adbac7&sideLabels=adbac7&dates=adbac7&ring=539bf5&currStreakLabel=539bf5&fire=539bf5" \
+            -o assets/streak-stats.svg
 
       - name: Generate Contribution Graph
         env:
@@ -63,50 +63,54 @@ jobs:
           """
 
           payload = json.dumps({
-            "query": query,
-            "variables": {
-              "login": username,
-              "from": start.isoformat() + "T00:00:00Z",
-              "to": today.isoformat() + "T23:59:59Z"
-            }
+              "query": query,
+              "variables": {
+                  "login": username,
+                  "from": start.isoformat() + "T00:00:00Z",
+                  "to": today.isoformat() + "T23:59:59Z"
+              }
           }).encode()
 
           request = urllib.request.Request(
-            "https://api.github.com/graphql",
-            data=payload,
-            headers={
-              "Authorization": "Bearer " + os.environ["GH_TOKEN"],
-              "Content-Type": "application/json",
-              "User-Agent": "RedellenJ-profile-stats"
-            }
+              "https://api.github.com/graphql",
+              data=payload,
+              headers={
+                  "Authorization": "Bearer " + os.environ["GH_TOKEN"],
+                  "Content-Type": "application/json",
+                  "User-Agent": "RedellenJ-profile-stats"
+              }
           )
 
           with urllib.request.urlopen(request) as response:
-            data = json.load(response)
+              data = json.load(response)
 
-          days = []
+          if data.get("errors"):
+              raise RuntimeError(str(data["errors"]))
 
           weeks = (
-            data["data"]["user"]
-            ["contributionsCollection"]
-            ["contributionCalendar"]
-            ["weeks"]
+              data["data"]["user"]
+                  ["contributionsCollection"]
+                  ["contributionCalendar"]
+                  ["weeks"]
           )
 
+          counts = {}
+
           for week in weeks:
-            for item in week["contributionDays"]:
-              current_date = date.fromisoformat(item["date"])
-
-              if start <= current_date <= today:
-                days.append(
-                  (
-                    current_date,
-                    item["contributionCount"]
+              for item in week["contributionDays"]:
+                  counts[date.fromisoformat(item["date"])] = (
+                      item["contributionCount"]
                   )
-                )
 
-          days.sort()
+          days = [
+              (
+                  start + timedelta(days=i),
+                  counts.get(start + timedelta(days=i), 0)
+              )
+              for i in range((today - start).days + 1)
+          ]
 
+          # Configuracao visual
           width = 1000
           height = 320
 
@@ -119,194 +123,192 @@ jobs:
           plot_height = height - top - bottom
 
           max_value = max(
-            [value for _, value in days] + [10]
+              [value for _, value in days] + [10]
           )
 
           y_max = max(
-            10,
-            ((max_value + 4) // 5) * 5
+              10,
+              ((max_value + 4) // 5) * 5
           )
 
           def x(index):
-            return left + (
-              plot_width
-              * index
-              / max(1, len(days) - 1)
-            )
+              return (
+                  left
+                  + plot_width * index / max(1, len(days) - 1)
+              )
 
           def y(value):
-            return (
-              top
-              + plot_height
-              - (
-                plot_height
-                * value
-                / y_max
+              return (
+                  top
+                  + plot_height
+                  - plot_height * value / y_max
               )
-            )
+
+          baseline = y(0)
 
           points = [
-            (
-              x(index),
-              y(value)
-            )
-            for index, (_, value)
-            in enumerate(days)
+              (x(index), y(value))
+              for index, (_, value) in enumerate(days)
           ]
 
+          # Curva suave sem valores negativos
+          # Interpolacao monotona com tangentes limitadas
           def smooth_path(points):
-            if not points:
-              return ""
+              if not points:
+                  return ""
 
-            if len(points) == 1:
-              px, py = points[0]
-              return f"M {px:.2f},{py:.2f}"
+              if len(points) == 1:
+                  px, py = points[0]
+                  return f"M {px:.2f},{py:.2f}"
 
-            path = [
-              f"M {points[0][0]:.2f},{points[0][1]:.2f}"
-            ]
+              n = len(points)
 
-            total = len(points)
+              slopes = [
+                  (points[i + 1][1] - points[i][1])
+                  / (points[i + 1][0] - points[i][0])
+                  for i in range(n - 1)
+              ]
 
-            for index in range(total - 1):
+              tangents = [0.0] * n
 
-              p0 = (
-                points[index - 1]
-                if index > 0
-                else points[index]
-              )
+              tangents[0] = slopes[0]
+              tangents[-1] = slopes[-1]
 
-              p1 = points[index]
-              p2 = points[index + 1]
+              for i in range(1, n - 1):
+                  a = slopes[i - 1]
+                  b = slopes[i]
 
-              p3 = (
-                points[index + 2]
-                if index + 2 < total
-                else p2
-              )
+                  if a * b <= 0:
+                      tangents[i] = 0.0
+                  else:
+                      tangents[i] = 2 * a * b / (a + b)
 
-              cp1x = (
-                p1[0]
-                + (p2[0] - p0[0]) / 6
-              )
+              path = [
+                  f"M {points[0][0]:.2f},{points[0][1]:.2f}"
+              ]
 
-              cp1y = (
-                p1[1]
-                + (p2[1] - p0[1]) / 6
-              )
+              for i in range(n - 1):
+                  x1, y1 = points[i]
+                  x2, y2 = points[i + 1]
 
-              cp2x = (
-                p2[0]
-                - (p3[0] - p1[0]) / 6
-              )
+                  dx = x2 - x1
 
-              cp2y = (
-                p2[1]
-                - (p3[1] - p1[1]) / 6
-              )
+                  m1 = tangents[i]
+                  m2 = tangents[i + 1]
 
-              path.append(
-                f"C "
-                f"{cp1x:.2f},{cp1y:.2f} "
-                f"{cp2x:.2f},{cp2y:.2f} "
-                f"{p2[0]:.2f},{p2[1]:.2f}"
-              )
+                  cp1x = x1 + dx / 3
+                  cp1y = y1 + m1 * dx / 3
 
-            return " ".join(path)
+                  cp2x = x2 - dx / 3
+                  cp2y = y2 - m2 * dx / 3
+
+                  # Evita extrapolacao entre pontos
+                  lower = min(y1, y2)
+                  upper = max(y1, y2)
+
+                  cp1y = max(lower, min(upper, cp1y))
+                  cp2y = max(lower, min(upper, cp2y))
+
+                  # Impede ultrapassar os limites do grafico
+                  cp1y = max(top, min(baseline, cp1y))
+                  cp2y = max(top, min(baseline, cp2y))
+
+                  path.append(
+                      f"C {cp1x:.2f},{cp1y:.2f} "
+                      f"{cp2x:.2f},{cp2y:.2f} "
+                      f"{x2:.2f},{y2:.2f}"
+                  )
+
+              return " ".join(path)
 
           line_path = smooth_path(points)
 
           area_path = (
-            line_path
-            + f" L {points[-1][0]:.2f},{top + plot_height:.2f}"
-            + f" L {points[0][0]:.2f},{top + plot_height:.2f}"
-            + " Z"
+              line_path
+              + f" L {points[-1][0]:.2f},{baseline:.2f}"
+              + f" L {points[0][0]:.2f},{baseline:.2f}"
+              + " Z"
           )
 
+          # Grade horizontal
           horizontal_grid = []
           y_labels = []
 
-          for value in range(
-            0,
-            y_max + 1,
-            5
-          ):
+          for value in range(0, y_max + 1, 5):
+              yy = y(value)
 
-            yy = y(value)
+              horizontal_grid.append(
+                  f'<line '
+                  f'x1="{left}" '
+                  f'y1="{yy:.2f}" '
+                  f'x2="{left + plot_width}" '
+                  f'y2="{yy:.2f}" '
+                  f'stroke="#444c56" '
+                  f'stroke-dasharray="3 3"/>'
+              )
 
-            horizontal_grid.append(
-              f'<line '
-              f'x1="{left}" '
-              f'y1="{yy:.2f}" '
-              f'x2="{left + plot_width}" '
-              f'y2="{yy:.2f}" '
-              f'stroke="#444c56" '
-              f'stroke-dasharray="3 3"/>'
-            )
+              y_labels.append(
+                  f'<text '
+                  f'x="{left - 12}" '
+                  f'y="{yy + 4:.2f}" '
+                  f'text-anchor="end" '
+                  f'fill="#adbac7" '
+                  f'font-size="12">'
+                  f'{value}</text>'
+              )
 
-            y_labels.append(
-              f'<text '
-              f'x="{left - 12}" '
-              f'y="{yy + 4:.2f}" '
-              f'text-anchor="end" '
-              f'fill="#adbac7" '
-              f'font-size="12">'
-              f'{value}'
-              f'</text>'
-            )
-
+          # Grade vertical e dias individuais
           vertical_grid = []
           x_labels = []
 
           for index, (current_date, _) in enumerate(days):
+              xx = x(index)
 
-            xx = x(index)
+              vertical_grid.append(
+                  f'<line '
+                  f'x1="{xx:.2f}" '
+                  f'y1="{top}" '
+                  f'x2="{xx:.2f}" '
+                  f'y2="{baseline:.2f}" '
+                  f'stroke="#444c56" '
+                  f'stroke-dasharray="3 3"/>'
+              )
 
-            vertical_grid.append(
-              f'<line '
-              f'x1="{xx:.2f}" '
-              f'y1="{top}" '
-              f'x2="{xx:.2f}" '
-              f'y2="{top + plot_height}" '
-              f'stroke="#444c56" '
-              f'stroke-dasharray="3 3"/>'
-            )
+              x_labels.append(
+                  f'<text '
+                  f'x="{xx:.2f}" '
+                  f'y="{height - 18}" '
+                  f'text-anchor="middle" '
+                  f'fill="#adbac7" '
+                  f'font-size="11">'
+                  f'{current_date.day}</text>'
+              )
 
-            x_labels.append(
-              f'<text '
-              f'x="{xx:.2f}" '
-              f'y="{height - 18}" '
-              f'text-anchor="middle" '
-              f'fill="#adbac7" '
-              f'font-size="11">'
-              f'{current_date.day}'
-              f'</text>'
-            )
-
+          # Pontos azuis
           circles = "".join(
-            f'<circle '
-            f'cx="{px:.2f}" '
-            f'cy="{py:.2f}" '
-            f'r="4" '
-            f'fill="#539bf5"/>'
-            for px, py in points
+              f'<circle '
+              f'cx="{px:.2f}" '
+              f'cy="{py:.2f}" '
+              f'r="4" '
+              f'fill="#539bf5"/>'
+              for px, py in points
           )
 
-          svg = f"""
-          <svg
+          # Geracao do SVG
+          svg = f"""<svg
             xmlns="http://www.w3.org/2000/svg"
             width="{width}"
             height="{height}"
-            viewBox="0 0 {width} {height}"
-          >
+            viewBox="0 0 {width} {height}">
 
             <rect
-              width="100%"
-              height="100%"
+              x="0.5"
+              y="0.5"
+              width="{width - 1}"
+              height="{height - 1}"
               rx="6"
               fill="#24292f"
-              stroke="#373e47"
-            />
+              stroke="#373e47"/>
 
             <text
               x="{width / 2}"
@@ -315,8 +317,7 @@ jobs:
               fill="#539bf5"
               font-family="Arial, sans-serif"
               font-size="20"
-              font-weight="600"
-            >
+              font-weight="600">
               RedellenJ's Contribution Graph
             </text>
 
@@ -330,8 +331,7 @@ jobs:
             <path
               d="{area_path}"
               fill="#adbac7"
-              opacity="0.10"
-            />
+              opacity="0.10"/>
 
             <path
               d="{line_path}"
@@ -339,8 +339,7 @@ jobs:
               stroke="#adbac7"
               stroke-width="4"
               stroke-linecap="round"
-              stroke-linejoin="round"
-            />
+              stroke-linejoin="round"/>
 
             {circles}
 
@@ -350,8 +349,7 @@ jobs:
               text-anchor="middle"
               fill="#adbac7"
               font-family="Arial, sans-serif"
-              font-size="12"
-            >
+              font-size="12">
               Days
             </text>
 
@@ -362,20 +360,17 @@ jobs:
               font-family="Arial, sans-serif"
               font-size="12"
               transform="rotate(-90 18 {top + plot_height / 2})"
-              text-anchor="middle"
-            >
+              text-anchor="middle">
               Contributions
             </text>
-
-          </svg>
-          """
+          </svg>"""
 
           with open(
-            "assets/activity-graph.svg",
-            "w",
-            encoding="utf-8"
+              "assets/activity-graph.svg",
+              "w",
+              encoding="utf-8"
           ) as file:
-            file.write(svg)
+              file.write(svg)
 
           PY
 
