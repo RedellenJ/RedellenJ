@@ -87,3 +87,5 @@
     src="https://raw.githubusercontent.com/RedellenJ/RedellenJ/output/github-contribution-grid-snake.svg"
   />
 </picture>
+
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=2dc1ca&height=120&section=footer" />
