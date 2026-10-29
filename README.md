@@ -32,12 +32,13 @@
 
 ## 📚 Estudando
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=lua,linux,html,css,js,cpp,java" />
+  <img src="https://skillicons.dev/icons?i=linux,html,css,js,cpp,lua,java" />
 </p>
 
 ## ⚙️ Ferramentas
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=git,vscode,ps,figma,windows,github" />
+  <img src="https://skillicons.dev/icons?i=windows,vscode,git,github,ps,figma,discord" />
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/trello/trello-original.svg" width="48" height="48" alt="Trello" />
 </p>
 
 ---
