@@ -21,15 +21,23 @@ jobs:
 
       - name: Download GitHub Stats
         run: |
-          curl -fsSL --retry 3 \
-            "https://github-readme-stats.vercel.app/api?username=RedellenJ&show_icons=true&theme=github_dark_dimmed&hide=stars&line_height=28&rank_icon=github" \
-            -o assets/stats.svg
+          if curl -fsSL --retry 3 --retry-all-errors --max-time 30             "https://github-readme-stats.vercel.app/api?username=RedellenJ&show_icons=true&theme=github_dark_dimmed&hide=stars&line_height=28&rank_icon=github"             -o assets/stats-new.svg             && grep -q "<svg" assets/stats-new.svg             && ! grep -q "Something went wrong" assets/stats-new.svg; then
+            mv assets/stats-new.svg assets/stats.svg
+          else
+            echo "::warning::GitHub Stats indisponivel; mantendo o ultimo SVG valido."
+            rm -f assets/stats-new.svg
+            test -s assets/stats.svg
+          fi
 
       - name: Download Streak Stats
         run: |
-          curl -fsSL --retry 3 \
-            "https://streak-stats.demolab.com/?user=RedellenJ&background=24292f&border=373e47&stroke=373e47&currStreakNum=adbac7&sideNums=adbac7&sideLabels=adbac7&dates=adbac7&ring=539bf5&currStreakLabel=539bf5&fire=539bf5" \
-            -o assets/streak-stats.svg
+          if curl -fsSL --retry 3 --retry-all-errors --max-time 30             "https://streak-stats.demolab.com/?user=RedellenJ&background=24292f&border=373e47&stroke=373e47&currStreakNum=adbac7&sideNums=adbac7&sideLabels=adbac7&dates=adbac7&ring=539bf5&currStreakLabel=539bf5&fire=539bf5"             -o assets/streak-new.svg             && grep -q "<svg" assets/streak-new.svg; then
+            mv assets/streak-new.svg assets/streak-stats.svg
+          else
+            echo "::warning::Streak Stats indisponivel; mantendo o ultimo SVG valido."
+            rm -f assets/streak-new.svg
+            test -s assets/streak-stats.svg
+          fi
 
       - name: Generate Contribution Graph
         env:
